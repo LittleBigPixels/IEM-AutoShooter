@@ -9,17 +9,18 @@ public class BulletComponent : MonoBehaviour
     public float MaxDuration = 5f;
     public float SpawnTime;
 
-    private void Start()
-    {
-        SpawnTime = Time.time;
-    }
+    private void Start() { }
 
     public void Update()
     {
+        if (SpawnTime == 0)
+            SpawnTime = Time.time;
+        
         if (Time.time > SpawnTime + MaxDuration)
         {
             Destroy(gameObject);
         }
+
         transform.position += Time.deltaTime * Velocity;
     }
 
@@ -31,7 +32,7 @@ public class BulletComponent : MonoBehaviour
             enemyComponent.ApplyDamage(1);
             GameObject.Destroy(gameObject);
         }
-        
+
         PlayerComponent playerComponent = other.gameObject.GetComponent<PlayerComponent>();
         if (playerComponent != null && !IsOwnerPlayer)
         {
