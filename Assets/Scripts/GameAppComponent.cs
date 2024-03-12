@@ -42,8 +42,6 @@ public class GameAppComponent : MonoBehaviour
             startLocation = playerStart.transform.position;
         m_player = GameObject.Instantiate(m_gameData.PlayerPrefab);
         m_player.transform.position = startLocation;
-         
-        m_uiManager = FindObjectOfType<UIManager>();
         
         StartWave(0);
         IsGameActive = true;
@@ -111,6 +109,7 @@ public class GameAppComponent : MonoBehaviour
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(0.5f);
         
+        m_uiManager = FindObjectOfType<UIManager>();
         m_uiManager.ShowTitle();
         yield return new WaitForSecondsRealtime(0.5f);
 
