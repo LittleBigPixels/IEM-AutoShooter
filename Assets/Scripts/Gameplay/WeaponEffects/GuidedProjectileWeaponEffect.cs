@@ -49,7 +49,7 @@ public class GuidedProjectileWeaponEffect : IWeaponEffect
 
     private Vector3 GetNearestEnemyPosition(Vector3 origin)
     {
-      var enemies = Object.FindObjectsOfType<EnemyComponent>();
+      var enemies = Object.FindObjectsOfType<BaseEnemyComponent>();
       
       Vector3 bestTarget = Vector3.zero;
       float closestDistanceSqr = Mathf.Infinity;
