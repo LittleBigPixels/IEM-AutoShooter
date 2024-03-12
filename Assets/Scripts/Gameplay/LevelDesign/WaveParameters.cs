@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Waves/Parameters")]
 public class WaveParameters : ScriptableObject
 {
     [Serializable]
-    public class WaveEnemy
+    public class WavePart
     {
-        public EnemyComponent Enemy;
+        public EnemyData.ThreatLevel Threat;
         public int Count;
     }
 
     [Serializable]
     public class Wave
     {
-        public List<WaveEnemy> Enemies = new List<WaveEnemy>();
+        [FormerlySerializedAs("Enemies")] public List<WavePart> Parts = new List<WavePart>();
     }
     
     public float WaveDuration;

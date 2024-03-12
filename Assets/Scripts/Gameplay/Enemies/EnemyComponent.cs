@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyComponent : MonoBehaviour
 {
+    public int DifficultyLevel = 1;
+    
     public float Speed;
     public int Health;
     
