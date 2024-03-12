@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameAppComponent : MonoBehaviour
@@ -15,8 +16,10 @@ public class GameAppComponent : MonoBehaviour
     public bool IsGameActive;
     public float WaveTimer;
 
-    private Dictionary<WaveParameters.WaveEnemy, float> m_enemiesSpawnTimers;
+    private Dictionary<WaveParameters.WavePart, EnemyComponent> m_selectedEnemies;
+    private Dictionary<WaveParameters.WavePart, float> m_enemiesSpawnTimers;
     private WaveParameters m_waveParameters;
+    private GameData m_gameData;
 
     private UIManager m_uiManager;
     private PlayerComponent m_player;
@@ -25,11 +28,22 @@ public class GameAppComponent : MonoBehaviour
 
     public void Start()
     {
+        SceneManager.LoadScene("UI", LoadSceneMode.Additive);
+        
+        DontDestroyOnLoad(gameObject);
+        
         m_random = new System.Random();
-        m_waveParameters = Addressables.LoadAssetAsync<WaveParameters>("Assets/Data/Waves.asset").WaitForCompletion();
+        m_gameData = Addressables.LoadAssetAsync<GameData>("Assets/Data/GameData.asset").WaitForCompletion();
+        m_waveParameters = m_gameData.WaveParameters;
 
+        var playerStart = GameObject.FindObjectOfType<PlayerStartLocation>();
+        Vector3 startLocation = Vector3.zero;
+        if (playerStart != null)
+            startLocation = playerStart.transform.position;
+        m_player = GameObject.Instantiate(m_gameData.PlayerPrefab);
+        m_player.transform.position = startLocation;
+         
         m_uiManager = FindObjectOfType<UIManager>();
-        m_player = FindObjectOfType<PlayerComponent>();
         
         StartWave(0);
         IsGameActive = true;
@@ -41,15 +55,15 @@ public class GameAppComponent : MonoBehaviour
             return;
 
         WaveTimer += Time.deltaTime;
-        foreach (var waveEnemy in m_enemiesSpawnTimers.Keys.ToList())
+        foreach (var wavePart in m_enemiesSpawnTimers.Keys.ToList())
         {
-            m_enemiesSpawnTimers[waveEnemy] += Time.deltaTime;
+            m_enemiesSpawnTimers[wavePart] += Time.deltaTime;
 
-            var spawnDelay = m_waveParameters.WaveDuration / waveEnemy.Count;
-            if (m_enemiesSpawnTimers[waveEnemy] > spawnDelay)
+            var spawnDelay = m_waveParameters.WaveDuration / wavePart.Count;
+            if (m_enemiesSpawnTimers[wavePart] > spawnDelay)
             {
-                SpawnEnemy(waveEnemy.Enemy);
-                m_enemiesSpawnTimers[waveEnemy] -= spawnDelay;
+                SpawnEnemy(m_selectedEnemies[wavePart]);
+                m_enemiesSpawnTimers[wavePart] -= spawnDelay;
             }
         }
 
@@ -67,9 +81,18 @@ public class GameAppComponent : MonoBehaviour
             CurrentWaveIndex = m_waveParameters.Waves.Count-1;
         CurrentWave = m_waveParameters.Waves[CurrentWaveIndex];
 
-        m_enemiesSpawnTimers = new Dictionary<WaveParameters.WaveEnemy, float>();
-        foreach (var waveEnemy in CurrentWave.Enemies)
-            m_enemiesSpawnTimers[waveEnemy] = 0;
+        m_selectedEnemies = new Dictionary<WaveParameters.WavePart, EnemyComponent>();
+        m_enemiesSpawnTimers = new Dictionary<WaveParameters.WavePart, float>();
+        foreach (var wavePart in CurrentWave.Parts)
+        {
+            var enemiesAtThreat = m_gameData.Enemies.Where(e => e.Threat == wavePart.Threat).ToList();
+            if (enemiesAtThreat.Count > 0)
+            {
+                var enemy = enemiesAtThreat[m_random.Next(0, enemiesAtThreat.Count)];
+                m_selectedEnemies[wavePart] = enemy.Prefab;
+                m_enemiesSpawnTimers[wavePart] = 0;
+            }
+        }
 
         WaveTimer = 0;
     }
@@ -112,7 +135,7 @@ public class GameAppComponent : MonoBehaviour
         {
             m_uiManager.ShowNoUpgradeText();
             yield return new WaitForSecondsRealtime(2.0f);
-        }
+            }
         
         m_uiManager.HideAll();
 
