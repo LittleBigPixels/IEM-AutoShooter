@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ceeeb13f7545478c4eb48c4c5bd310, type: 3}
   m_Name: Starter - GuidedWeapon
   m_EditorClassIdentifier: 
-  Name: Basic Weapon
+  Name: Guided Shooting
   UpgradeA: {fileID: 0}
   UpgradeB: {fileID: 0}
-  BulletPrefab: {fileID: 1166684888214102239, guid: 703f5ca7b2b468445b3244232678802a, type: 3}
-  MultiShot: 2
+  BulletPrefab: {fileID: 8072364194237487077, guid: f9b24b7f4110ec3478aa8afd1218f268, type: 3}
+  MultiShot: 3
   Speed: 30
   RateOfFire: 20
   MultiShotCount: 1

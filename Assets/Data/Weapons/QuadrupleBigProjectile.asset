@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ceeeb13f7545478c4eb48c4c5bd310, type: 3}
   m_Name: QuadrupleBigProjectile
   m_EditorClassIdentifier: 
-  Name: Quadruple Balls
+  Name: Quadruple Projectile
   UpgradeA: {fileID: 0}
   UpgradeB: {fileID: 0}
-  BulletPrefab: {fileID: 4605259560369913369, guid: 247f276cff97e73438466be63bceaec7, type: 3}
+  BulletPrefab: {fileID: 4605259560369913369, guid: d9c05029eba13604d9f554612762b4f6, type: 3}
   MultiShot: 1
   Speed: 30
   RateOfFire: 1
