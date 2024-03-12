@@ -33,7 +33,7 @@ public class FireballEnemy : BaseEnemyComponent
             m_fireballCooldownTimer = FireballCooldown;
             GameObject fireball = Instantiate(FireballPrefab, transform.position, Quaternion.identity);
             FireballComponent fireballComponent = fireball.GetComponent<FireballComponent>();
-            fireballComponent.Direction = directionToPlayer.normalized;
+            fireballComponent.Velocity = directionToPlayer.normalized;
         }
     }
 }
