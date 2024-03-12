@@ -1,46 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ArcProjectileWeaponEffect : IWeaponEffect
+namespace WeaponEffects
 {
-    private readonly BulletComponent m_prefab;
-    private readonly int m_multiShotCount;
-    private readonly float m_speed;
-    private readonly float m_rateOfFire;
-
-    private float m_nextShotDelay = 0;
-
-    public ArcProjectileWeaponEffect(BulletComponent prefab, int multiShotCount, float speed, float rateOfFire)
+    public class ArcProjectileWeaponEffect : IWeaponEffect
     {
-        m_prefab = prefab;
-        m_multiShotCount = multiShotCount;
-        m_speed = speed;
-        m_rateOfFire = rateOfFire;
-    }
+        private readonly BulletComponent m_prefab;
+        private readonly float m_speed;
+        private readonly float m_rateOfFire;
+        private readonly float m_numberOfBullets;
+        private readonly int m_radius;
 
-    public void UpdateAndShoot(Vector3 origin, Vector3 direction)
-    {
-        float delayBetweenShots = 1.0f / m_rateOfFire;
-        m_nextShotDelay += Time.deltaTime;
-        if (m_nextShotDelay > delayBetweenShots)
+        private float m_nextShotDelay = 0;
+
+        public ArcProjectileWeaponEffect(BulletComponent prefab, int numberOfBullets, float speed, float rateOfFire, int arcAngle)
         {
-            Shoot(origin, direction);
-            m_nextShotDelay -= delayBetweenShots;
+            m_prefab = prefab;
+            m_speed = speed;
+            m_rateOfFire = rateOfFire;
+            m_numberOfBullets = numberOfBullets;
+            m_radius = arcAngle;
         }
-    }
 
-    private void Shoot(Vector3 origin, Vector3 direction)
-    {
-        float angleOffset = 180.0f / (m_multiShotCount + 1);
-        float angle = -90 + angleOffset;
-
-        for (int i = 0; i < m_multiShotCount; i++)
+        public void UpdateAndShoot(Vector3 origin, Vector3 direction)
         {
-            BulletComponent bullet = GameObject.Instantiate<BulletComponent>(m_prefab);
-            bullet.transform.position = origin;
-            bullet.Velocity = Quaternion.AngleAxis(angle, Vector3.up) * direction * m_speed;
-            angle += angleOffset;
+            float delayBetweenShots = 1.0f / m_rateOfFire;
+            m_nextShotDelay += Time.deltaTime;
+            if (m_nextShotDelay > delayBetweenShots)
+            {
+                Shoot(origin, direction);
+                m_nextShotDelay -= delayBetweenShots;
+            }
+        }
+
+        private void Shoot(Vector3 origin, Vector3 direction)
+        {
+            float angle = m_radius / m_numberOfBullets;
+            
+            direction = Rotate(direction, -(m_radius/2));
+                
+            for (int i = 0; i < m_numberOfBullets; i++)
+            {
+                BulletComponent bullet = GameObject.Instantiate<BulletComponent>(m_prefab);
+                bullet.transform.position = origin;
+
+                direction = Rotate(direction, angle);
+                
+                bullet.Velocity = direction * m_speed;
+            }
+        }
+
+        public Vector3 Rotate(Vector3 v, float angleDregee)
+        {
+            Quaternion q = Quaternion.AngleAxis(angleDregee, Vector3.up);
+            return q * v;
         }
     }
 }
