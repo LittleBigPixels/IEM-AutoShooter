@@ -9,19 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cc86dcfc4b46a890cf788da9e47c48, type: 3}
-  m_Name: Waves
+  m_Script: {fileID: 11500000, guid: db6e04892c164b3388ce2865b0a975dc, type: 3}
+  m_Name: BasicEnemyData
   m_EditorClassIdentifier: 
-  WaveDuration: 10
-  Waves:
-  - Parts:
-    - Threat: 0
-      Count: 5
-  - Parts:
-    - Threat: 0
-      Count: 20
-  - Parts:
-    - Threat: 0
-      Count: 30
-    - Threat: 1
-      Count: 6
+  Name: Simple Enemy
+  Prefab: {fileID: 8464274641385029406, guid: 46c70cb0ff5143147b4798eb5092a6bb, type: 3}
+  Threat: 0
