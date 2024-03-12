@@ -6,9 +6,20 @@ public class BulletComponent : MonoBehaviour
 {
     public bool IsOwnerPlayer = true;
     public Vector3 Velocity;
+    public float MaxDuration = 5f;
+    public float SpawnTime;
+
+    private void Start()
+    {
+        SpawnTime = Time.time;
+    }
 
     public void Update()
     {
+        if (Time.time > SpawnTime + MaxDuration)
+        {
+            Destroy(gameObject);
+        }
         transform.position += Time.deltaTime * Velocity;
     }
 
