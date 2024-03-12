@@ -1,0 +1,35 @@
+# Unity local/temp folders
+Library/
+Temp/
+.vs/
+
+# Visual studio files
+*.csproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+
+# Potential OS generated files
+.DS_Store*
+._*
+.Spotlight-V100
+.Trashes
+[Tt]humbs.db
+fmod_editor.log
+fmod.log
+
+Workspace/
+Assets/FMODStudioCache.*
+obj/
+Assets/ProBuilder Data/ProBuilderPreferences.asset.meta
+Assets/ProBuilder Data/ProBuilderPreferences.asset
+Assets\GPUInstancer\PrototypeData
+
+#Custom settings files
+.idea/
+Logs/
+Packages/packages-lock.json
+UserSettings/
+Assets/Plugins/Shapes/Shaders/Generated Materials/
