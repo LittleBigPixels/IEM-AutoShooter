@@ -32,13 +32,16 @@ public class PlayerComponent : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow)) inputVertical++;
         if (Input.GetKey(KeyCode.DownArrow)) inputVertical--;
 
-        Vector3 moveDirection = new Vector3(inputHorizontal, 0, inputVertical).normalized;
-        
-        transform.position += Time.deltaTime * Speed * moveDirection;
-        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-
         foreach (var weaponEffect in m_weaponEffects)
             weaponEffect.UpdateAndShoot(transform.position, transform.forward);
+
+        Vector3 moveDirection = new Vector3(inputHorizontal, 0, inputVertical).normalized;
+
+        if(moveDirection == Vector3.zero)
+            return;
+
+        transform.position += Time.deltaTime * Speed * moveDirection;
+        transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
     }
 
     public void ApplyDamage(int damage) { }
