@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletComponent : MonoBehaviour
 {
-    public bool IsOwnerPlayer;
+    public bool IsOwnerPlayer = true;
     public Vector3 Velocity;
 
     public void Update()
