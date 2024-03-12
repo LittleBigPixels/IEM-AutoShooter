@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyData", menuName = "Enemy Data")]
@@ -11,6 +12,6 @@ public class EnemyData : ScriptableObject
     }
     
     public String Name;
-    public EnemyComponent Prefab;
+    public BaseEnemyComponent Prefab;
     public ThreatLevel Threat;
 }
