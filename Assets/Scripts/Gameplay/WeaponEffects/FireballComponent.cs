@@ -2,10 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballComponent : BulletComponent
+public class FireballComponent : MonoBehaviour
 {
-    [SerializeField]
-    private int PassThrough = 5;
+    [SerializeField] private int PassThrough = 5;
+    [SerializeField] private int Speed = 25;
+    public bool IsOwnerPlayer = true;
+    public Vector3 Velocity;
+
+    public void Start(){
+        IsOwnerPlayer = false;
+    }
+
+    public void Update()
+    {
+        transform.position += Time.deltaTime * Velocity * Speed;
+        Debug.DrawRay(transform.position, Velocity, Color.red);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

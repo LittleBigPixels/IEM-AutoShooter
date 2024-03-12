@@ -22,16 +22,18 @@ public class FireballEnemy : BaseEnemyComponent
     {
         // Stay 5m away from the player
         Vector3 directionToPlayer = m_player.transform.position - transform.position;
-        Vector3 destination = m_player.transform.position - 5.0f * directionToPlayer.normalized;
-        Vector3 movement = destination.normalized;
+        Vector3 directionToDestination = directionToPlayer - 5.0f * directionToPlayer.normalized;
+        Vector3 movement = directionToDestination.normalized;
 
+        movement.y = 0.0f;
         transform.position += Time.deltaTime * Speed * movement;
 
         m_fireballCooldownTimer -= Time.deltaTime;
         if (m_fireballCooldownTimer <= 0.0f)
         {
             m_fireballCooldownTimer = FireballCooldown;
-            GameObject fireball = Instantiate(FireballPrefab, transform.position, Quaternion.identity);
+            GameObject fireball = GameObject.Instantiate(FireballPrefab);
+            fireball.transform.position = transform.position;
             FireballComponent fireballComponent = fireball.GetComponent<FireballComponent>();
             fireballComponent.Velocity = directionToPlayer.normalized;
         }
