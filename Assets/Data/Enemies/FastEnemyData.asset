@@ -9,19 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7cc86dcfc4b46a890cf788da9e47c48, type: 3}
-  m_Name: Waves
+  m_Script: {fileID: 11500000, guid: db6e04892c164b3388ce2865b0a975dc, type: 3}
+  m_Name: FastEnemyData
   m_EditorClassIdentifier: 
-  WaveDuration: 10
-  Waves:
-  - Parts:
-    - Threat: 0
-      Count: 5
-  - Parts:
-    - Threat: 0
-      Count: 20
-  - Parts:
-    - Threat: 0
-      Count: 30
-    - Threat: 1
-      Count: 6
+  Name: Fast Enemeny
+  Prefab: {fileID: 3685143366263066905, guid: 600b124a7d12647408f5e14831929b67, type: 3}
+  Threat: 1

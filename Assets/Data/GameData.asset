@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 4625316065689298885, guid: 88d3a98fbe68dff4ba736bb761aadfc3, type: 3}
   WaveParameters: {fileID: 11400000, guid: 386cd8cd81a5c6d488c7579254e43732, type: 2}
+  Enemies:
+  - {fileID: 11400000, guid: 95dde301c03a29b458d221e453066a67, type: 2}
+  - {fileID: 11400000, guid: 71b14d592a0a24e49a09666141648be5, type: 2}
