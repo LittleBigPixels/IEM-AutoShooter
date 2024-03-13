@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Profiling;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
@@ -35,6 +34,8 @@ public class GameAppComponent : MonoBehaviour
         m_random = new System.Random();
         m_gameData = Addressables.LoadAssetAsync<GameData>("Assets/Data/GameData.asset").WaitForCompletion();
         m_waveParameters = m_gameData.WaveParameters;
+
+        Game.Enemies = new List<BaseEnemyComponent>();
 
         var playerStart = GameObject.FindObjectOfType<PlayerStartLocation>();
         Vector3 startLocation = Vector3.zero;
@@ -102,6 +103,8 @@ public class GameAppComponent : MonoBehaviour
 
         BaseEnemyComponent enemy = GameObject.Instantiate<BaseEnemyComponent>(prefab);
         enemy.transform.position = spawner.transform.position;
+        
+        Game.Enemies.Add(enemy);
     }
 
     IEnumerator MoveToNextWaveCoroutine()
