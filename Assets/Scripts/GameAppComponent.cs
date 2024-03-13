@@ -16,7 +16,7 @@ public class GameAppComponent : MonoBehaviour
     public bool IsGameActive;
     public float WaveTimer;
 
-    private Dictionary<WaveParameters.WavePart, EnemyComponent> m_selectedEnemies;
+    private Dictionary<WaveParameters.WavePart, BaseEnemyComponent> m_selectedEnemies;
     private Dictionary<WaveParameters.WavePart, float> m_enemiesSpawnTimers;
     private WaveParameters m_waveParameters;
     private GameData m_gameData;
@@ -79,7 +79,7 @@ public class GameAppComponent : MonoBehaviour
             CurrentWaveIndex = m_waveParameters.Waves.Count-1;
         CurrentWave = m_waveParameters.Waves[CurrentWaveIndex];
 
-        m_selectedEnemies = new Dictionary<WaveParameters.WavePart, EnemyComponent>();
+        m_selectedEnemies = new Dictionary<WaveParameters.WavePart, BaseEnemyComponent>();
         m_enemiesSpawnTimers = new Dictionary<WaveParameters.WavePart, float>();
         foreach (var wavePart in CurrentWave.Parts)
         {
@@ -95,12 +95,12 @@ public class GameAppComponent : MonoBehaviour
         WaveTimer = 0;
     }
 
-    void SpawnEnemy(EnemyComponent prefab)
+    void SpawnEnemy(BaseEnemyComponent prefab)
     {
         var spawnLocations = GameObject.FindObjectsOfType<SpawnLocationComponent>();
         var spawner = spawnLocations[m_random.Next(0, spawnLocations.Length)];
 
-        EnemyComponent enemy = GameObject.Instantiate<EnemyComponent>(prefab);
+        BaseEnemyComponent enemy = GameObject.Instantiate<BaseEnemyComponent>(prefab);
         enemy.transform.position = spawner.transform.position;
     }
 

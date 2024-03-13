@@ -11,6 +11,7 @@ public class ProjectileWeapon : BaseWeapon
         Single,
         Parallel,
         Arc,
+        Guided,
     }
 
     public BulletComponent BulletPrefab;
@@ -26,7 +27,8 @@ public class ProjectileWeapon : BaseWeapon
             return new BasicProjectileWeaponEffect(BulletPrefab, Speed, RateOfFire);
         if (MultiShot == MultiShotType.Parallel)
             return new ParallelProjectileWeaponEffect(BulletPrefab, MultiShotCount, Speed, RateOfFire);
-
+        if (MultiShot == MultiShotType.Guided)
+            return new GuidedProjectileWeaponEffect(BulletPrefab, Speed, RateOfFire);
         throw new NotImplementedException();
     }
 }
