@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 21
   DefaultWeapons:
-  - {fileID: 11400000, guid: f5e172cfd5285ad4c886298d7e0fdb65, type: 2}
+  - {fileID: 11400000, guid: 4b596c839e2ecd44f982634bfb788a18, type: 2}
   - {fileID: 11400000, guid: 7be99479004def545949f4d8f77ae495, type: 2}
 --- !u!33 &8472313954019946374
 MeshFilter:

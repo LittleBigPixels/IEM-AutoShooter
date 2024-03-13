@@ -12,6 +12,7 @@ public class BaseEnemyComponent : MonoBehaviour
         if (Health <= 0)
         {
             GameObject.Destroy(gameObject);
+            Game.Enemies.Remove(this);
         }
     }
 }

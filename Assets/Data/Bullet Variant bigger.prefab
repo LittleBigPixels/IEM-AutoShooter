@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8940929360535022995, guid: f9b24b7f4110ec3478aa8afd1218f268, type: 3}
       propertyPath: m_Name
-      value: Bullet Variant
+      value: Bullet Variant bigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
