@@ -8,4 +8,5 @@ public class GameData : ScriptableObject
     public PlayerComponent PlayerPrefab;
     public WaveParameters WaveParameters;
     public List<EnemyData> Enemies;
+    public List<BaseWeapon> Weapons;
 }

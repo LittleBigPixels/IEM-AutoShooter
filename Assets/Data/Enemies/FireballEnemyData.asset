@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: FireballEnemy
   Prefab: {fileID: 4788200424288365572, guid: fe4d799ce67d9d92199bd01ecbd844cf, type: 3}
-  Threat: 0
+  Threat: 2

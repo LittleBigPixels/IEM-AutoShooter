@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public enum SelectionResult
     {
         None,
+        Pass,
         UpgradeA,
         UpgradeB,
     }
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI UpgradeButtonAText;
     public Button UpgradeButtonB;
     public TextMeshProUGUI UpgradeButtonBText;
+    public Button PassButton;
 
     public SelectionResult Selection;
     
@@ -41,6 +43,7 @@ public class UIManager : MonoBehaviour
         NoUpgradeText.gameObject.SetActive(false);
         UpgradeButtonA.gameObject.SetActive(false);
         UpgradeButtonB.gameObject.SetActive(false);
+        PassButton.gameObject.SetActive(false);
 
         Selection = SelectionResult.None;
     }
@@ -68,6 +71,7 @@ public class UIManager : MonoBehaviour
         UpgradeButtonAText.text = upgradeAText;
         UpgradeButtonB.gameObject.SetActive(true);
         UpgradeButtonBText.text = upgradeBText;
+        PassButton.gameObject.SetActive(true);
     }
 
     public void OnUpgradeA()
@@ -78,5 +82,10 @@ public class UIManager : MonoBehaviour
     public void OnUpgradeB()
     {
         Selection = SelectionResult.UpgradeB;
+    }
+
+    public void OnPass()
+    {
+        Selection = SelectionResult.Pass;
     }
 }

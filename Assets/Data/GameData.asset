@@ -15,7 +15,32 @@ MonoBehaviour:
   PlayerPrefab: {fileID: 4625316065689298885, guid: 88d3a98fbe68dff4ba736bb761aadfc3, type: 3}
   WaveParameters: {fileID: 11400000, guid: 386cd8cd81a5c6d488c7579254e43732, type: 2}
   Enemies:
+  - {fileID: 11400000, guid: 95dde301c03a29b458d221e453066a67, type: 2}
+  - {fileID: 11400000, guid: 71b14d592a0a24e49a09666141648be5, type: 2}
+  - {fileID: 11400000, guid: d2d8e4b15f942c2a992a40ae61924e48, type: 2}
   - {fileID: 11400000, guid: 12d161e2899b1094cbf0461aee4ed058, type: 2}
-  - {fileID: 11400000, guid: 5a422c82604fcce46b40ee20f9e5f8ba, type: 2}
   - {fileID: 11400000, guid: 1127972ce8cf69c4b91baaba2c4e205c, type: 2}
-  
+  - {fileID: 11400000, guid: 5a422c82604fcce46b40ee20f9e5f8ba, type: 2}
+  - {fileID: 11400000, guid: b64a0c4d0b06fd840afb7a573b220708, type: 2}
+  - {fileID: 11400000, guid: 96b4e246425023346bb79b605c3b674c, type: 2}
+  Weapons:
+  - {fileID: 11400000, guid: 19e7dd6a846b52942a27cd41f7877645, type: 2}
+  - {fileID: 11400000, guid: 48e1afd267cd2f743b9400bec4ac4eaf, type: 2}
+  - {fileID: 11400000, guid: 9a04934993a3d274d874826b64cea7a5, type: 2}
+  - {fileID: 11400000, guid: 30d0366aca6836c4ab026b78f063c638, type: 2}
+  - {fileID: 11400000, guid: fd3e7f4a3666f38498dc692e264b7694, type: 2}
+  - {fileID: 11400000, guid: fb2ce647b295eae4c816823f3ac9d2b1, type: 2}
+  - {fileID: 11400000, guid: d60ea3313a6b2384db80d88707197b4c, type: 2}
+  - {fileID: 11400000, guid: 45e5640ff5c91d2fc89a798b0ed26f16, type: 2}
+  - {fileID: 11400000, guid: c74f671375072e08c9f267d79c995185, type: 2}
+  - {fileID: 11400000, guid: 7c5ac63f6bdebdb419c111d1626973f6, type: 2}
+  - {fileID: 11400000, guid: c2086879e0291394a833aae5d5114dba, type: 2}
+  - {fileID: 11400000, guid: f784c64a186c4aa4da4db33296a04b22, type: 2}
+  - {fileID: 11400000, guid: f784c64a186c4aa4da4db33296a04b22, type: 2}
+  - {fileID: 11400000, guid: ff70a12c75113de49be50bc0dcc231b4, type: 2}
+  - {fileID: 11400000, guid: ba07ac95e9afe12509dce35d57f689f0, type: 2}
+  - {fileID: 11400000, guid: 96d69c22e717d7549afa1cf1375bcc0c, type: 2}
+  - {fileID: 11400000, guid: 4612858be80f05b4c8d575b5aa7bee1b, type: 2}
+  - {fileID: 11400000, guid: 4612858be80f05b4c8d575b5aa7bee1b, type: 2}
+  - {fileID: 11400000, guid: d549045a19f4e6a44bcdebaf570a903d, type: 2}
+  - {fileID: 11400000, guid: b7dfdf9d46f19e58d9dad06352959846, type: 2}
