@@ -25,3 +25,5 @@ MonoBehaviour:
       Count: 30
     - Threat: 1
       Count: 6
+    - Threat: 2
+      Count: 50
