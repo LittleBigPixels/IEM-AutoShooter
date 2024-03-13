@@ -36,6 +36,7 @@ public class FireballEnemy : BaseEnemyComponent
             fireball.transform.position = transform.position;
             FireballComponent fireballComponent = fireball.GetComponent<FireballComponent>();
             fireballComponent.Velocity = directionToPlayer.normalized;
+            fireballComponent.OnActivate();
         }
     }
 }
