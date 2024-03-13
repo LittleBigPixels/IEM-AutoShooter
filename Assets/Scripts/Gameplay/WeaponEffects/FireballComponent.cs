@@ -9,14 +9,27 @@ public class FireballComponent : MonoBehaviour
     public bool IsOwnerPlayer = true;
     public Vector3 Velocity;
 
+    public float Lifetime = 5;
+    private float m_startTime; 
+    
     public void Start(){
         IsOwnerPlayer = false;
+    }
+
+    public void OnActivate()
+    {
+        m_startTime = Time.time;
     }
 
     public void Update()
     {
         transform.position += Time.deltaTime * Velocity * Speed;
         Debug.DrawRay(transform.position, Velocity, Color.red);
+
+        if (Time.time - m_startTime > Lifetime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
