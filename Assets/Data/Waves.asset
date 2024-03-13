@@ -16,12 +16,12 @@ MonoBehaviour:
   Waves:
   - Parts:
     - Threat: 0
-      Count: 5
+      Count: 500
   - Parts:
     - Threat: 0
-      Count: 15
+      Count: 200
     - Threat: 0
-      Count: 15
+      Count: 200
   - Parts:
     - Threat: 0
       Count: 25
