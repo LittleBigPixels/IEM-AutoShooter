@@ -22,9 +22,8 @@ public class SpiralEnemyComponent : BaseEnemyComponent
     
     public void Update()
     {
-    
         Vector3 direction = m_player.transform.position - transform.position;
-        direction = new Vector3(direction.x, m_player.transform.position.y, direction.z);
+        direction = new Vector3(direction.x, 0, direction.z);
         direction = Quaternion.Euler(0, angleRotation, 0) * direction;
         float distanceThisFrame = Speed * Time.deltaTime;
         transform.Translate(direction.normalized * distanceThisFrame, Space.World);
