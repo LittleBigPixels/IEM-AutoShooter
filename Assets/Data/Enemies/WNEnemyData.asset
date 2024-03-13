@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db6e04892c164b3388ce2865b0a975dc, type: 3}
-  m_Name: FireballEnemyData
+  m_Name: WNEnemyData
   m_EditorClassIdentifier: 
-  Name: FireballEnemy
-  Prefab: {fileID: 4788200424288365572, guid: fe4d799ce67d9d92199bd01ecbd844cf, type: 3}
+  Name: WNEnemy
+  Prefab: {fileID: 895695363977215270, guid: d9451c2a97754734faa6422550f2e6dc, type: 3}
   Threat: 0
