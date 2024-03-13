@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ceeeb13f7545478c4eb48c4c5bd310, type: 3}
   m_Name: DoubleBiggerProjectile
   m_EditorClassIdentifier: 
-  Name: double Bigger Balls
+  Name: Double Bigger Projectile
   UpgradeA: {fileID: 0}
   UpgradeB: {fileID: 0}
-  BulletPrefab: {fileID: 1166684888214102239, guid: 703f5ca7b2b468445b3244232678802a, type: 3}
+  BulletPrefab: {fileID: 6011987765143188996, guid: dc689f755d9476941a3d1a44b198061a, type: 3}
   MultiShot: 1
   Speed: 30
   RateOfFire: 1

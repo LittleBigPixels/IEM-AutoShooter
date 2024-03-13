@@ -19,9 +19,36 @@ MonoBehaviour:
       Count: 5
   - Parts:
     - Threat: 0
+      Count: 15
+    - Threat: 0
+      Count: 15
+  - Parts:
+    - Threat: 0
+      Count: 25
+    - Threat: 0
+      Count: 25
+    - Threat: 1
+      Count: 15
+  - Parts:
+    - Threat: 0
+      Count: 30
+    - Threat: 0
+      Count: 30
+    - Threat: 1
+      Count: 20
+    - Threat: 1
       Count: 20
   - Parts:
     - Threat: 0
       Count: 30
+    - Threat: 0
+      Count: 30
     - Threat: 1
-      Count: 6
+      Count: 20
+    - Threat: 1
+      Count: 20
+    - Threat: 2
+      Count: 10
+  - Parts:
+    - Threat: 3
+      Count: 1

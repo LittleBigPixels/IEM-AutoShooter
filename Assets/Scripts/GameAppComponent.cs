@@ -29,9 +29,9 @@ public class GameAppComponent : MonoBehaviour
     public void Start()
     {
         SceneManager.LoadScene("UI", LoadSceneMode.Additive);
-        
+
         DontDestroyOnLoad(gameObject);
-        
+
         m_random = new System.Random();
         m_gameData = Addressables.LoadAssetAsync<GameData>("Assets/Data/GameData.asset").WaitForCompletion();
         m_waveParameters = m_gameData.WaveParameters;
@@ -42,7 +42,7 @@ public class GameAppComponent : MonoBehaviour
             startLocation = playerStart.transform.position;
         m_player = GameObject.Instantiate(m_gameData.PlayerPrefab);
         m_player.transform.position = startLocation;
-        
+
         StartWave(0);
         IsGameActive = true;
     }
@@ -76,7 +76,7 @@ public class GameAppComponent : MonoBehaviour
     {
         CurrentWaveIndex = index;
         if (CurrentWaveIndex >= m_waveParameters.Waves.Count)
-            CurrentWaveIndex = m_waveParameters.Waves.Count-1;
+            CurrentWaveIndex = m_waveParameters.Waves.Count - 1;
         CurrentWave = m_waveParameters.Waves[CurrentWaveIndex];
 
         m_selectedEnemies = new Dictionary<WaveParameters.WavePart, BaseEnemyComponent>();
@@ -108,7 +108,7 @@ public class GameAppComponent : MonoBehaviour
     {
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(0.5f);
-        
+
         m_uiManager = FindObjectOfType<UIManager>();
         m_uiManager.ShowTitle();
         yield return new WaitForSecondsRealtime(0.5f);
@@ -119,23 +119,25 @@ public class GameAppComponent : MonoBehaviour
         {
             m_uiManager.ShowSelectText(weaponToUpgrade.Name);
             yield return new WaitForSecondsRealtime(0.5f);
-            
-            m_uiManager.ShowButtons(weaponToUpgrade.UpgradeA.Name, weaponToUpgrade.UpgradeB.Name);
+
+            var upgradeA = PickRandomWeapon();
+            var upgradeB = PickRandomWeapon();
+            m_uiManager.ShowButtons(upgradeA.Name, upgradeB.Name);
 
             while (m_uiManager.Selection == UIManager.SelectionResult.None)
                 yield return null;
 
             if (m_uiManager.Selection == UIManager.SelectionResult.UpgradeA)
-                m_player.ReplaceWeapon(weaponToUpgrade, weaponToUpgrade.UpgradeA);
+                m_player.ReplaceWeapon(weaponToUpgrade, upgradeA);
             if (m_uiManager.Selection == UIManager.SelectionResult.UpgradeB)
-                m_player.ReplaceWeapon(weaponToUpgrade, weaponToUpgrade.UpgradeB);
+                m_player.ReplaceWeapon(weaponToUpgrade, upgradeB);
         }
         else
         {
             m_uiManager.ShowNoUpgradeText();
             yield return new WaitForSecondsRealtime(2.0f);
-            }
-        
+        }
+
         m_uiManager.HideAll();
 
         Time.timeScale = 1;
@@ -145,20 +147,15 @@ public class GameAppComponent : MonoBehaviour
 
     private BaseWeapon PickWeaponToUpgrade()
     {
-        var playerWeapons = m_player.ActiveWeapons;
-        var upgradableWeapon = new List<BaseWeapon>();
-        foreach (var weapon in playerWeapons)
-        {
-            if (weapon.UpgradeA != null && weapon.UpgradeB != null)
-                upgradableWeapon.Add(weapon);
-        }
-
-        if (upgradableWeapon.Count > 0)
-        {
-            var weaponToUpgrade = upgradableWeapon[m_random.Next(0, upgradableWeapon.Count)];
-            return weaponToUpgrade;
-        }
-
-        return null;
+        var playerWeapons = m_player.ActiveWeapons.ToList();
+        var weaponToUpgrade = playerWeapons[m_random.Next(0, playerWeapons.Count)];
+        return weaponToUpgrade;
+    }
+    
+    private BaseWeapon PickRandomWeapon()
+    {
+        var allWeapons = m_gameData.Weapons;
+        var weapon = allWeapons[m_random.Next(0, allWeapons.Count)];
+        return weapon;
     }
 }
